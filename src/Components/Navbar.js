@@ -48,7 +48,7 @@ const Navbar = () => {
                         as="button"
                         fontSize="xl"
                         fontWeight="bold"
-                        color="gray.800"
+                        color="#184776"
                         display={{ base: 'none', md: 'block' }}
                         onClick={handleDrawerToggle}
                     >
