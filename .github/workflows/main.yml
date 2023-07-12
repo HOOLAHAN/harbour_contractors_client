@@ -21,9 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build React app
-        env:
-          REACT_APP_BACKEND_API_URL: ${{ secrets.REACT_APP_BACKEND_API_URL }}     
+      - name: Build React app  
         run: npm run build
 
       - name: Deploy to S3
