@@ -1,38 +1,31 @@
 import React from 'react';
-import {
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-} from '@chakra-ui/react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './Pages/Home';
+import Navbar from './Components/Navbar';
+import AboutUs from './Pages/AboutUs';
+import Services from './Pages/Services';
+import Projects from './Pages/Projects';
+import ContactUs from './Pages/ContactUs';
+
+import { Box, Grid } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
 
 function App() {
-  return (
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-  );
+    return (
+        <Box textAlign="center" fontSize="xl">
+            <Navbar />
+            <Grid minH="100vh" p={3}>
+                <ColorModeSwitcher justifySelf="flex-end" />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<AboutUs />} />
+                    <Route path="/services" element={<Services />} />
+                    <Route path="/projects" element={<Projects />} />
+                    <Route path="/contact" element={<ContactUs />} />
+                </Routes>
+            </Grid>
+        </Box>
+    );
 }
 
 export default App;
