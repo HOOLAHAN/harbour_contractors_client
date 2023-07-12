@@ -1,7 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './Pages/Home';
 import Navbar from './Components/Navbar';
+import Footer from './Components/Footer';
+import Home from './Pages/Home';
 import AboutUs from './Pages/AboutUs';
 import Services from './Pages/Services';
 import Projects from './Pages/Projects';
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/contact" element={<ContactUs />} />
                 </Routes>
             </Grid>
+            <Footer />
         </Box>
     );
 }
