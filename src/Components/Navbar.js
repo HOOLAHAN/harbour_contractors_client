@@ -12,6 +12,7 @@ import {
     DrawerBody,
     Stack,
     Image,
+    useColorMode,
 } from '@chakra-ui/react';
 
 import HC_Logo_SVG from '../Images/HC_Logo_SVG.svg';
@@ -19,15 +20,24 @@ import { ColorModeSwitcher } from '../ColorModeSwitcher';
 
 const Navbar = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const { colorMode } = useColorMode();
 
     const handleDrawerToggle = () => {
         setIsDrawerOpen(!isDrawerOpen);
     };
 
+    const getNavbarColor = () => {
+        return colorMode === 'dark' ? 'gray.900' : 'white';
+    };
+
+    const getTextColor = () => {
+        return colorMode === 'dark' ? 'white' : 'gray.900';
+    };
+
     return (
         <>
             <Box
-                bg="white"
+                bg={getNavbarColor()}
                 py={4}
                 px={6}
                 borderBottom="1px solid"
@@ -49,7 +59,7 @@ const Navbar = () => {
                             as="button"
                             fontSize="xl"
                             fontWeight="bold"
-                            color="#184776"
+                            color={getTextColor()}
                             display="block"
                             mr={4}
                             onClick={handleDrawerToggle}
