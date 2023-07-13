@@ -1,7 +1,10 @@
-import { Box, Heading, Text, Button } from '@chakra-ui/react';
+import { Box, Heading, Text, Button, useColorMode } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 const AboutUs = () => {
+    const { colorMode } = useColorMode();
+    const textColor = colorMode === 'dark' ? 'white' : '#184776';
+
     return (
         <Box
             display="flex"
@@ -9,13 +12,15 @@ const AboutUs = () => {
             justifyContent="center"
             height="100vh"
         >
-            <Box maxWidth="800px" p={4} textAlign="center" mt={{ base: '70px', md: 0 }}>
-                <Heading as="h2" size="lg" mb={4}>
+            <Box maxWidth="800px" p={4} textAlign="center" mt="70px">
+                <Heading as="h2" size="lg" mb={4} color={textColor}>
                     About Us
                 </Heading>
-                <Text>Welcome to Harbour Contractors LTD.</Text>
+                <Text color={textColor}>
+                    Welcome to Harbour Contractors LTD.
+                </Text>
                 <br />
-                <Text>
+                <Text color={textColor}>
                     We are a construction company based in Bosham - West Sussex providing
                     an architect design and construction management service. We are able
                     to offer a complete one-stop package from concept through to handover

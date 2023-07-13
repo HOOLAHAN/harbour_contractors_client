@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Heading, Input, Textarea, Button } from '@chakra-ui/react';
+import { Box, Heading, Input, Textarea, Button, useColorMode } from '@chakra-ui/react';
 import axios from 'axios';
 
 const ContactUs = () => {
@@ -8,6 +8,10 @@ const ContactUs = () => {
         email: '',
         message: '',
     });
+
+    const { colorMode } = useColorMode();
+    const isDarkMode = colorMode === 'dark';
+    const textColor = isDarkMode ? 'white' : '#184776';
 
     const handleChange = (e) => {
         setFormData((prevData) => ({
@@ -41,8 +45,14 @@ const ContactUs = () => {
     };
 
     return (
-        <Box maxWidth="500px" mx="auto" p={4} mt={{ base: '70px', md: 0 }}>
-            <Heading as="h2" size="lg" mb={4}>
+        <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            height="100vh"
+        >
+        <Box maxWidth="500px" mx="auto" p={4} mt="70px">
+            <Heading as="h2" size="lg" mb={4} color={textColor}>
                 Contact Us
             </Heading>
             <form onSubmit={handleSubmit}>
@@ -71,6 +81,7 @@ const ContactUs = () => {
                     Send
                 </Button>
             </form>
+            </Box>
         </Box>
     );
 };
