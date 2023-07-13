@@ -14,7 +14,8 @@ import {
     Image,
 } from '@chakra-ui/react';
 
-import HC_Logo_SVG from "../Images/HC_Logo_SVG.svg";
+import HC_Logo_SVG from '../Images/HC_Logo_SVG.svg';
+import { ColorModeSwitcher } from '../ColorModeSwitcher';
 
 const Navbar = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -29,7 +30,6 @@ const Navbar = () => {
                 bg="white"
                 py={4}
                 px={6}
-                color="white"
                 borderBottom="1px solid"
                 borderColor="gray.200"
                 boxShadow="md"
@@ -44,16 +44,20 @@ const Navbar = () => {
                         <Image src={HC_Logo_SVG} alt="Logo" maxWidth="150px" />
                     </Link>
 
-                    <Text
-                        as="button"
-                        fontSize="xl"
-                        fontWeight="bold"
-                        color="#184776"
-                        display='block'
-                        onClick={handleDrawerToggle}
-                    >
-                        Menu
-                    </Text>
+                    <Flex alignItems="center">
+                        <Text
+                            as="button"
+                            fontSize="xl"
+                            fontWeight="bold"
+                            color="#184776"
+                            display="block"
+                            mr={4}
+                            onClick={handleDrawerToggle}
+                        >
+                            Menu
+                        </Text>
+                        <ColorModeSwitcher />
+                    </Flex>
                 </Flex>
             </Box>
 

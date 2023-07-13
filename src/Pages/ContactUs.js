@@ -41,7 +41,7 @@ const ContactUs = () => {
     };
 
     return (
-        <Box maxWidth="500px" mx="auto" p={4}>
+        <Box maxWidth="500px" mx="auto" p={4} mt={{ base: '70px', md: 0 }}>
             <Heading as="h2" size="lg" mb={4}>
                 Contact Us
             </Heading>

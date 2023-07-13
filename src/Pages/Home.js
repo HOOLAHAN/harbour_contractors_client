@@ -9,7 +9,6 @@ const Home = () => {
     return (
         <Box w="100%" h="100vh" position="relative" overflowX="visible">
             <Image src={HomeBackground} alt="Home Background" objectFit="cover" objectPosition="center" position="absolute" top={0} left={0} width="100%" height="100%" zIndex={-1} />
-
             <Box
                 position="absolute"
                 top="50%"

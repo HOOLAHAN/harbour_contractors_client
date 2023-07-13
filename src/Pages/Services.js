@@ -6,7 +6,7 @@ import BuildServices from '../Images/BuildServices.jpg'
 
 const Services = () => {
     return (
-        <Box textAlign="center" p={4}>
+        <Box textAlign="center" p={4} mt={{ base: '70px', md: 0 }}>
             <Heading as="h1" size="xl" my={8}>
                 What We Do
             </Heading>
