@@ -9,11 +9,11 @@ const Projects = () => {
     const renderCarouselItems = (prefix, count) => {
         const carouselItems = [];
         for (let i = 1; i <= count; i++) {
-            const imageUrl = `https://harbourcontractorsimages.s3.eu-west-2.amazonaws.com/${prefix}${i}.png`;
+            const imageName = `${prefix} ${i}.png`;
+            const imageUrl = `https://harbourcontractorsimages.s3.eu-west-2.amazonaws.com/${encodeURIComponent(imageName)}`;
             carouselItems.push(
                 <div key={i}>
-                    <img src={imageUrl} alt={`Project ${i}`} className="carousel-image" />
-                    <p className="legend" style={{ color: textColor }}>{prefix} {i}</p>
+                    <img src={imageUrl} alt={`Project ${i}`} className="carousel-image"/>
                 </div>
             );
         }
@@ -27,17 +27,17 @@ const Projects = () => {
             </Heading>
 
             <Box my={8}>
-                <Text as="h2" size="lg" color={textColor}>
+                <Text as="h2" size="md" color={textColor} pb="20px">
                     Trippets - Construction Phase - November 2020 - May 2022
                 </Text>
-                <Carousel>{renderCarouselItems('trippets', 2)}</Carousel>
+                <Carousel>{renderCarouselItems('Trippets', 15)}</Carousel>
             </Box>
 
             <Box my={8}>
-                <Text as="h2" size="lg" color={textColor}>
+                <Text as="h2" size="md" color={textColor} pb="20px">
                     Java Sound - Construction Phase - September 2021 - December 2022
                 </Text>
-                <Carousel>{renderCarouselItems('javasound', 2)}</Carousel>
+                <Carousel>{renderCarouselItems('Java Sound', 2)}</Carousel>
             </Box>
 
             <style jsx>{`
