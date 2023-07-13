@@ -49,7 +49,7 @@ const Navbar = () => {
                         fontSize="xl"
                         fontWeight="bold"
                         color="#184776"
-                        display={{ base: 'none', md: 'block' }}
+                        display='block'
                         onClick={handleDrawerToggle}
                     >
                         Menu
