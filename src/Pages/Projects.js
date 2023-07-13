@@ -3,6 +3,20 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const Projects = () => {
+    const renderCarouselItems = (prefix, count) => {
+        const carouselItems = [];
+        for (let i = 1; i <= count; i++) {
+            const imageUrl = `https://harbourcontractorsimages.s3.eu-west-2.amazonaws.com/${prefix}${i}.png`;
+            carouselItems.push(
+                <div key={i}>
+                    <img src={imageUrl} alt={`Project ${i}`} className="carousel-image" />
+                    <p className="legend">{prefix} {i}</p>
+                </div>
+            );
+        }
+        return carouselItems;
+    };
+
     return (
         <Box textAlign="center" p={4}>
             <Heading as="h1" size="xl" my={8}>
@@ -13,35 +27,28 @@ const Projects = () => {
                 <Text as="h2" size="lg">
                     Trippets - Construction Phase - November 2020 - May 2022
                 </Text>
-                <Carousel>
-                    <div>
-                        <img src="image1.jpg" alt="Project 1" />
-                        <p className="legend">Project 1</p>
-                    </div>
-                    <div>
-                        <img src="image2.jpg" alt="Project 2" />
-                        <p className="legend">Project 2</p>
-                    </div>
-                    {/* Add more images as needed */}
-                </Carousel>
+                <Carousel>{renderCarouselItems('trippets', 2)}</Carousel>
             </Box>
 
             <Box my={8}>
                 <Text as="h2" size="lg">
                     Java Sound - Construction Phase - September 2021 - December 2022
                 </Text>
-                <Carousel>
-                    <div>
-                        <img src="image3.jpg" alt="Project 3" />
-                        <p className="legend">Project 3</p>
-                    </div>
-                    <div>
-                        <img src="image4.jpg" alt="Project 4" />
-                        <p className="legend">Project 4</p>
-                    </div>
-                    {/* Add more images as needed */}
-                </Carousel>
+                <Carousel>{renderCarouselItems('javasound', 2)}</Carousel>
             </Box>
+
+            <style jsx>{`
+        .carousel-image {
+          max-width: 100%;
+          height: auto;
+        }
+
+        @media screen and (min-width: 768px) {
+          .carousel-image {
+            max-width: 60%;
+          }
+        }
+      `}</style>
         </Box>
     );
 };
