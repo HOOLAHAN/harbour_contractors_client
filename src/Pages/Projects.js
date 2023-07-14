@@ -1,24 +1,11 @@
 import { Box, Heading, Text, useColorMode } from '@chakra-ui/react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { renderCarouselItems } from '../Functions/carouselUtils';
 
 const Projects = () => {
     const { colorMode } = useColorMode();
     const textColor = colorMode === 'dark' ? 'white' : '#184776';
-
-    const renderCarouselItems = (prefix, count) => {
-        const carouselItems = [];
-        for (let i = 1; i <= count; i++) {
-            const imageName = `${prefix} ${i}.png`;
-            const imageUrl = `https://harbourcontractorsimages.s3.eu-west-2.amazonaws.com/${encodeURIComponent(imageName)}`;
-            carouselItems.push(
-                <div key={i}>
-                    <img src={imageUrl} alt={`Project ${i}`} className="carousel-image"/>
-                </div>
-            );
-        }
-        return carouselItems;
-    };
 
     return (
         <Box textAlign="center" p={4} mt="70px">
