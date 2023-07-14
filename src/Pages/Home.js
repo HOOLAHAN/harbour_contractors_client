@@ -15,6 +15,8 @@ const Home = () => {
                 left="50%"
                 transform="translate(-50%, -50%)"
                 textAlign="center"
+                bg="rgba(255, 255, 255, 0.7)"
+                p={4}
             >
                 <Text
                     fontSize={fontSizeA}
@@ -46,4 +48,3 @@ const Home = () => {
 };
 
 export default Home;
-
