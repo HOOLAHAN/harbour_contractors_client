@@ -14,7 +14,7 @@ function App() {
     return (
         <Box textAlign="center" fontSize="xl">
             <Navbar />
-            <Grid minH="100vh" p={3}>
+            <Grid minH="100vh">
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<AboutUs />} />
