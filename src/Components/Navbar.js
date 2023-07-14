@@ -31,7 +31,7 @@ const Navbar = () => {
     };
 
     const getTextColor = () => {
-        return colorMode === 'dark' ? 'white' : 'gray.900';
+        return colorMode === 'dark' ? 'white' : '#184776';
     };
 
     return (
