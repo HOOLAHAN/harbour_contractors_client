@@ -8,45 +8,48 @@ const Projects = () => {
     const textColor = colorMode === 'dark' ? 'white' : '#184776';
 
     return (
-        <center><Box textAlign="center" p={4} mt="70px" width="80%">
-            <Heading as="h1" size="xl" my={8} color={textColor}>
-                Our Projects
-            </Heading>
+        <center>
+            <Box textAlign="center" p={4} mt="70px" width="80%">
+                <Heading as="h1" size="xl" my={8} color={textColor}>
+                    Our Projects
+                </Heading>
 
-            <Box my={8} width="100%">
-                <Text as="h2" size="md" color={textColor} pb="20px">
-                    Trippets - Construction Phase - November 2020 - May 2022
-                </Text>
-                <Carousel>{renderCarouselItems('Trippets', 15)}</Carousel>
-            </Box>
+                <Box my={8} width="100%">
+                    <Text as="h2" size="md" color={textColor} pb="20px">
+                        Trippets - Construction Phase - November 2020 - May 2022
+                    </Text>
+                    <Carousel>{renderCarouselItems('Trippets', 15)}</Carousel>
+                </Box>
 
-            <Box my={8} width="100%">
-                <Text as="h2" size="md" color={textColor} pb="20px">
-                    Java Sound - Construction Phase - September 2021 - December 2022
-                </Text>
-                <Carousel>{renderCarouselItems('Java Sound', 2)}</Carousel>
-            </Box>
+                <Box my={8} width="100%">
+                    <Text as="h2" size="md" color={textColor} pb="20px">
+                        Java Sound - Construction Phase - September 2021 - December 2022
+                    </Text>
+                    <Carousel>{renderCarouselItems('Java Sound', 2)}</Carousel>
+                </Box>
 
-            <style jsx>{`
-                .carousel-image {
-                    max-width: 100%;
-                    height: auto;
-                    object-fit: contain;
-                }
-
-                @media screen and (min-width: 768px) {
+                <style jsx>{`
                     .carousel-image {
-                        max-width: 60%;
+                        max-height: 60vh;
+                        max-width: 100%;
+                        height: auto;
+                        object-fit: contain;
                     }
-                }
 
-                @media screen and (max-width: 480px) {
-                    .carousel-image {
-                        max-width: 80%;
+                    @media screen and (min-width: 768px) {
+                        .carousel-image {
+                            max-width: 60%;
+                        }
                     }
-                }
-            `}</style>
-        </Box></center>
+
+                    @media screen and (max-width: 480px) {
+                        .carousel-image {
+                            max-width: 90vw;
+                        }
+                    }
+                `}</style>
+            </Box>
+        </center>
     );
 };
 
