@@ -37,7 +37,7 @@ const Projects = () => {
                 <Text as="h2" size="md" color={textColor} pb="20px">
                     Java Sound - Construction Phase - September 2021 - December 2022
                 </Text>
-                <Carousel>{renderCarouselItems('Java Sound', 2)}</Carousel>
+                <Carousel>{renderCarouselItems('Java Sound', 18)}</Carousel>
             </Box>
 
             <style jsx>{`
