@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Heading, Input, Textarea, Button, useColorMode } from '@chakra-ui/react';
+import { Box, Heading, Input, Textarea, Button, useColorMode, Popover, PopoverTrigger, PopoverContent, PopoverBody } from '@chakra-ui/react';
 import axios from 'axios';
 
 const ContactUs = () => {
@@ -31,11 +31,16 @@ const ContactUs = () => {
       });
 
       console.log('Message sent successfully');
-      // Show success message or redirect to a thank you page
+      // Show success message with Popover
     } catch (error) {
       console.log('Error sending message:', error);
       // Handle error condition and display an error message to the user
     }
+  };
+
+  const handleOkButtonClick = () => {
+    // Redirect the user to the Home page
+    window.location.href = '/'; 
   };
 
   return (
@@ -66,9 +71,23 @@ const ContactUs = () => {
             value={formData.text_message}
             onChange={handleChange}
           />
-          <Button mt={2} type="submit" colorScheme="teal">
-            Send
-          </Button>
+          <Popover trigger="click" placement="top">
+            <PopoverTrigger>
+              <Button type="submit" mt={2} colorScheme="teal">
+                Send
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverBody textAlign="center">
+                <Heading as="h3" size="md" mb={2}>
+                  Message sent successfully!
+                </Heading>
+                <Button colorScheme="teal" onClick={handleOkButtonClick}>
+                  OK
+                </Button>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
         </form>
       </Box>
     </Box>
