@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Box, Heading, Input, Textarea, Button, useColorMode, Popover, PopoverTrigger, PopoverContent, PopoverBody } from '@chakra-ui/react';
+import { Box, Heading, Input, Textarea, Button, useColorMode, Popover, PopoverTrigger, PopoverContent, PopoverBody, Image } from '@chakra-ui/react';
 import axios from 'axios';
+import HC_Logo_SVG from '../Images/HC_Logo_SVG.svg';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -71,7 +72,7 @@ const ContactUs = () => {
             value={formData.text_message}
             onChange={handleChange}
           />
-          <Popover trigger="click" placement="top">
+          <Popover trigger="click" placement="top" size="md">
             <PopoverTrigger>
               <Button type="submit" mt={2} colorScheme="teal">
                 Send
@@ -82,6 +83,7 @@ const ContactUs = () => {
                 <Heading as="h3" size="md" mb={2}>
                   Message sent successfully!
                 </Heading>
+                <center><Image m={5} src={HC_Logo_SVG} alt="Logo" maxWidth="150px"/></center>
                 <Button colorScheme="teal" onClick={handleOkButtonClick}>
                   OK
                 </Button>
