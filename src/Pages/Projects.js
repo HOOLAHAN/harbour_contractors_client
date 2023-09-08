@@ -21,7 +21,7 @@ const Projects = () => {
                     <Carousel>{renderCarouselItems('Trippets', 15)}</Carousel>
                 </Box>
 
-            <Box my={8}>
+          <Box my={8} width="100%" maxWidth="90vw" overflowX="auto">
                 <Text as="h2" size="md" color={textColor} pb="20px">
                     Java Sound - Construction Phase - September 2021 - December 2022
                 </Text>
