@@ -1,10 +1,17 @@
-import { Text, Image, Box, Button, Link as RouterLink, useBreakpointValue } from '@chakra-ui/react';
-import { Link as ReachLink } from 'react-router-dom';
+import { Text, Image, Box, Button, useBreakpointValue, Stack, Center } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 import HomeBackground from '../Images/HomeBackground.jpg';
 
 const Home = () => {
     const fontSizeA = useBreakpointValue({ base: '3xl', md: '5xl' });
     const fontSizeB = useBreakpointValue({ base: '1xl', md: '3xl' });
+    const stackDirection = useBreakpointValue({ base: 'column', md: 'row' });
+    const navigate = useNavigate();
+
+    // Function to handle navigation to /projects
+    const handleNavigateToProjects = () => {
+        navigate('/projects');
+    };
 
     return (
         <Box w="100%" h="100vh" position="relative" overflowX="visible" mt={{ base: '10px', md: '70px' }}>
@@ -37,11 +44,16 @@ const Home = () => {
                 >
                     Offering design, build, and construction management services
                 </Text>
-                <RouterLink as={ReachLink} to="/contact" colorScheme="teal" _hover={{ textDecoration: 'none' }}>
-                    <Button colorScheme="teal" size="lg">
-                        Book a Consultation
-                    </Button>
-                </RouterLink>
+                <Center>
+                    <Stack direction={stackDirection} spacing={4}>
+                        <Button onClick={handleNavigateToProjects} colorScheme="teal" size="md">
+                            View Projects
+                        </Button>
+                        <Button as="a" href="mailto:info@harbourcontractors.co.uk" colorScheme="teal" size="md">
+                            Book a Consultation
+                        </Button>
+                    </Stack>
+                </Center>
             </Box>
         </Box>
     );
