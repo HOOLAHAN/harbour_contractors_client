@@ -1,4 +1,4 @@
-import { useColorMode, Box, Button, Flex, Heading, Stack, Text, Image } from '@chakra-ui/react';
+import { useColorMode, Box, Button, Flex, Heading, Stack, Text, Image, Center } from '@chakra-ui/react';
 import DesignServices from '../Images/DesignServices.jpg';
 import BuildServices from '../Images/BuildServices.jpg';
 
@@ -25,9 +25,18 @@ const Services = () => {
                     <Text color={textColor}>
                         Having our design office in-house enables us to value engineer the design throughout all stages of the project without complication. For more information, please visit our design office website via the link below:
                     </Text>
-                    <Button as="a" href="http://www.hoolahanarchitect.co.uk/" target="_blank" rel="noopener noreferrer" colorScheme="teal">
-                        Brian Hoolahan Architect
-                    </Button>
+                    <Center>
+                        <Button
+                            as="a"
+                            href="http://www.hoolahanarchitect.co.uk/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            colorScheme="teal"
+                            width="210px"
+                            >
+                            Brian Hoolahan Architect
+                        </Button>
+                    </Center>
                 </Stack>
 
                 <Stack flex={1} p={4} spacing={4}>
