@@ -1,5 +1,4 @@
 import { useColorMode, Box, Button, Flex, Heading, Stack, Text, Image } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
 import DesignServices from '../Images/DesignServices.jpg';
 import BuildServices from '../Images/BuildServices.jpg';
 
@@ -62,7 +61,7 @@ const Services = () => {
                     <b>Book a consultation</b>
                 </Text>
                 <Text color={textColor}>If you would like to book a consultation or have any questions about what we can do for you, please get in touch with us.</Text>
-                <Button as={Link} to="/contact" colorScheme="teal" mt={4}>
+                <Button as="a" href="mailto:info@harbourcontractors.co.uk" colorScheme="teal" size="md">
                     Contact Us
                 </Button>
             </Box>

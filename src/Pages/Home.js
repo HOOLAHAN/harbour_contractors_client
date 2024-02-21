@@ -50,7 +50,7 @@ const Home = () => {
                             View Projects
                         </Button>
                         <Button as="a" href="mailto:info@harbourcontractors.co.uk" colorScheme="teal" size="md">
-                            Book a Consultation
+                            Contact Us
                         </Button>
                     </Stack>
                 </Center>

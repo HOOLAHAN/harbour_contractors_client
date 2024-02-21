@@ -82,7 +82,6 @@ const Navbar = () => {
                                 <Link href="/about">About us</Link>
                                 <Link href="/services">Services</Link>
                                 <Link href="/projects">Projects</Link>
-                                <Link href="/contact">Contact us</Link>
                             </Stack>
                         </DrawerBody>
                     </DrawerContent>
