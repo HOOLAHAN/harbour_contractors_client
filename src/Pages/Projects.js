@@ -44,7 +44,7 @@ const Projects = () => {
                     <Carousel>{generateCarouselItems('Java Sound')}</Carousel>
                 </Box>
 
-                <style jsx>{`
+                <style>{`
                     .carousel-image {
                         max-height: 60vh;
                         max-width: 95%;
