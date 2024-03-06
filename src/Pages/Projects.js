@@ -10,19 +10,21 @@ const Projects = () => {
     const textColor = colorMode === 'dark' ? 'white' : '#184776';
 
     const generateCarouselItems = (projectName) => {
+
         // Filter keys to those that match the project name and are preloaded
         const imageKeys = Object.keys(preloadedImages)
-            .filter(key => key.startsWith(projectName) && preloadedImages[key] === true);
-        
+            .filter(key => key.startsWith(`https://harbourcontractorsimages.s3.eu-west-2.amazonaws.com/${encodeURIComponent(projectName)}`) && preloadedImages[key] === true);
+
         // Map over the filtered keys to create carousel items
-        return imageKeys.map((imageKey, index) => (
-            <div key={index}>
-                <img src={`https://harbourcontractorsimages.s3.eu-west-2.amazonaws.com/${encodeURIComponent(imageKey)}.png`} alt={imageKey} className="carousel-image" />
-            </div>
-        ));
+        return imageKeys.map((imageKey, index) => {
+            return (
+                <div key={index}>
+                    <img src={imageKey} alt={`${projectName} ${index + 1}`} className="carousel-image" />
+                </div>
+            );
+        });
     };
     
-
     return (
         <center>
             <Box textAlign="center" p={4} mt="70px" width="90%">
