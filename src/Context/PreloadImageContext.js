@@ -1,4 +1,3 @@
-// PreloadImageContext.js
 import React, { createContext, useState, useEffect, useCallback } from 'react';
 import { fetchImageUrls } from '../functions/fetchImageUrls';
 
@@ -7,14 +6,12 @@ const PreloadImageContext = createContext();
 export const PreloadImageProvider = ({ children }) => {
   const [preloadedImages, setPreloadedImages] = useState({});
 
-  // Memoizing preloadImages function
   const preloadImages = useCallback(async () => {
     const projectNames = ['Trippets', 'Java Sound'];
     
     for (const projectName of projectNames) {    
       let imageUrls = await fetchImageUrls(projectName);
 
-      // Sort the image URLs by extracting the numeric part of the filename and comparing
       imageUrls = imageUrls.sort((a, b) => {
         const extractNumber = (url) => {
           const match = url.match(/image(\d+)/);
@@ -41,11 +38,11 @@ export const PreloadImageProvider = ({ children }) => {
         img.src = imageUrl;
       });
     }
-  }, []); // Dependencies array is empty because preloadImages does not depend on any state or props
+  }, []);
 
   useEffect(() => {
     preloadImages();
-  }, [preloadImages]); // Adding preloadImages to the dependency array
+  }, [preloadImages]);
 
   return (
     <PreloadImageContext.Provider value={{ preloadedImages }}>
