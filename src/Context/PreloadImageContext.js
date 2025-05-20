@@ -1,15 +1,17 @@
-import React, { createContext, useState, useEffect, useCallback } from 'react';
+// src/Context/PreloadImageContext.js
+
+import { createContext, useState, useEffect, useCallback } from 'react';
 import { fetchImageUrls } from '../functions/fetchImageUrls';
 
 const PreloadImageContext = createContext();
 
 export const PreloadImageProvider = ({ children }) => {
-  const [preloadedImages, setPreloadedImages] = useState({});
+  const [projectImages, setProjectImages] = useState({});
 
   const preloadImages = useCallback(async () => {
     const projectNames = ['Trippets', 'Java Sound'];
     
-    for (const projectName of projectNames) {    
+    for (const projectName of projectNames) {
       let imageUrls = await fetchImageUrls(projectName);
 
       imageUrls = imageUrls.sort((a, b) => {
@@ -17,25 +19,18 @@ export const PreloadImageProvider = ({ children }) => {
           const match = url.match(/image(\d+)/);
           return match ? parseInt(match[1], 10) : 0;
         };
-
         return extractNumber(a) - extractNumber(b);
       });
-      
-      imageUrls.forEach((imageUrl, index) => {
+
+      setProjectImages((prev) => ({
+        ...prev,
+        [projectName]: imageUrls,
+      }));
+
+      // Optional: preload actual image files
+      imageUrls.forEach((url) => {
         const img = new Image();
-        
-        img.onload = () => {
-          setPreloadedImages((prev) => ({
-            ...prev,
-            [imageUrl]: true,
-          }));
-        };
-        
-        img.onerror = (error) => {
-          console.error(`Error loading image: ${imageUrl}`, error);
-        };
-        
-        img.src = imageUrl;
+        img.src = url;
       });
     }
   }, []);
@@ -45,7 +40,7 @@ export const PreloadImageProvider = ({ children }) => {
   }, [preloadImages]);
 
   return (
-    <PreloadImageContext.Provider value={{ preloadedImages }}>
+    <PreloadImageContext.Provider value={{ projectImages }}>
       {children}
     </PreloadImageContext.Provider>
   );

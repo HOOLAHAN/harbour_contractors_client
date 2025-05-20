@@ -1,57 +1,47 @@
-import React, { useContext } from 'react';
+// src/Pages/Projects.jsx
+
+import { useContext } from 'react';
 import { Box, Heading, Text, useColorMode } from '@chakra-ui/react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import PreloadImageContext from '../Context/PreloadImageContext';
+import ImageWithSkeleton from '../Components/ImageWithSkeleton';
 
 const Projects = () => {
   const { colorMode } = useColorMode();
-  const { preloadedImages } = useContext(PreloadImageContext);
+  const { projectImages } = useContext(PreloadImageContext);
   const textColor = colorMode === 'dark' ? 'white' : '#184776';
 
-  const generateCarouselItems = (projectName) => {
-    const encodedProjectName = encodeURIComponent(projectName);
-    const imageKeys = Object.keys(preloadedImages)
-      .filter(key => key.includes(encodedProjectName) && preloadedImages[key] === true);
+  const renderProjectCarousel = (projectName, label) => {
+    const images = projectImages[projectName] || [];
 
-    return imageKeys.map((imageKey, index) => {
-      return (
-        <div key={index}>
-          <img src={imageKey} alt={`${projectName} ${index + 1}`} className="carousel-image" />
-        </div>
-      );
-    });
+    return (
+      <Box my={8} width="100%" maxWidth="90vw" overflowX="auto">
+        <Text as="h2" size="md" color={textColor} pb="20px">
+          {label}
+        </Text>
+        <Carousel>
+          {images.map((url, index) => (
+            <div key={index}>
+              <ImageWithSkeleton
+                src={url}
+                alt={`${projectName} ${index + 1}`}
+              />
+            </div>
+          ))}
+        </Carousel>
+      </Box>
+    );
   };
-  
+
   return (
     <center>
       <Box textAlign="center" p={4} mt="70px" width="90%">
         <Heading as="h1" size="xl" my={8} color={textColor}>
           Our Projects
         </Heading>
-
-        <Box my={8} width="100%" maxWidth="90vw" overflowX="auto">
-          <Text as="h2" size="md" color={textColor} pb="20px">
-            Trippets - Construction Phase - November 2020 - May 2022
-          </Text>
-          <Carousel>{generateCarouselItems('Trippets')}</Carousel>
-        </Box>
-
-        <Box my={8} width="100%" maxWidth="90vw" overflowX="auto">
-          <Text as="h2" size="md" color={textColor} pb="20px">
-            Java Sound - Construction Phase - September 2021 - December 2022
-          </Text>
-          <Carousel>{generateCarouselItems('Java Sound')}</Carousel>
-        </Box>
-
-        <style>{`
-          .carousel-image {
-            max-height: 60vh;
-            max-width: 95%;
-            height: auto;
-            object-fit: contain;
-          }
-        `}</style>
+        {renderProjectCarousel('Trippets', 'Trippets - Construction Phase - Nov 2020 to May 2022')}
+        {renderProjectCarousel('Java Sound', 'Java Sound - Construction Phase - Sept 2021 to Dec 2022')}
       </Box>
     </center>
   );
