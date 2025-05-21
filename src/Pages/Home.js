@@ -24,6 +24,8 @@ const Home = () => {
                 textAlign="center"
                 bg="rgba(255, 255, 255, 0.7)"
                 p={4}
+                borderRadius="md"
+                boxShadow="lg"
             >
                 <Text
                     fontSize={fontSizeA}
@@ -49,7 +51,7 @@ const Home = () => {
                         <Button onClick={handleNavigateToProjects} colorScheme="teal" size="md">
                             View Projects
                         </Button>
-                        <Button as="a" href="mailto:info@harbourcontractors.co.uk" colorScheme="teal" size="md">
+                        <Button as="a" href="mailto:info@ijrhservices.co.uk" colorScheme="teal" size="md">
                             Contact Us
                         </Button>
                     </Stack>

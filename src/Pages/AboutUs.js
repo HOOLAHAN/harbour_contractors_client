@@ -1,5 +1,6 @@
-import { Box, Heading, Text, Button, useColorMode } from '@chakra-ui/react';
+import { Box, Heading, Text, Button, useColorMode, Image } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
+import HomeBackground from '../Images/HomeBackground.jpg';
 
 const AboutUs = () => {
     const { colorMode } = useColorMode();
@@ -12,7 +13,8 @@ const AboutUs = () => {
             justifyContent="center"
             height="100vh"
         >
-            <Box maxWidth="800px" p={4} textAlign="center" mt="70px">
+            <Image src={HomeBackground} alt="Home Background" objectFit="cover" objectPosition="center" position="absolute" top={0} left={0} width="100%" height="100%" zIndex={-1} />
+            <Box maxWidth="800px" p={4} textAlign="center" mt="70px" bg="rgba(255, 255, 255, 0.9)" borderRadius="md" boxShadow="lg">
                 <Heading as="h2" size="lg" mb={4} color={textColor}>
                     About Us
                 </Heading>

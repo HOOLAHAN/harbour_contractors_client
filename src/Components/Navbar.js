@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 
 import HC_Logo_SVG from '../Images/HC_Logo_SVG.svg';
-import { ColorModeSwitcher } from '../ColorModeSwitcher';
+import { ColorModeSwitcher } from './ColorModeSwitcher';
 
 const Navbar = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);

@@ -15,7 +15,7 @@ const Services = () => {
 
             <Flex direction={{ base: 'column', md: 'row' }} justify="space-between" align="start">
                 <Stack flex={1} p={4} spacing={4}>
-                    <Image src={DesignServices} alt="Design Services" objectFit="cover" />
+                    <Image src={DesignServices} alt="Design Services" objectFit="cover" borderRadius="md" />
                     <Heading as="h2" size="lg" color={textColor}>
                         Design Services
                     </Heading>
@@ -40,7 +40,7 @@ const Services = () => {
                 </Stack>
 
                 <Stack flex={1} p={4} spacing={4}>
-                    <Image src={BuildServices} alt="Build Services" objectFit="cover" />
+                    <Image src={BuildServices} alt="Build Services" objectFit="cover" borderRadius="md" />
                     <Heading as="h2" size="lg" color={textColor}>
                         Building Services
                     </Heading>
@@ -70,7 +70,7 @@ const Services = () => {
                     <b>Book a consultation</b>
                 </Text>
                 <Text color={textColor}>If you would like to book a consultation or have any questions about what we can do for you, please get in touch with us.</Text>
-                <Button as="a" href="mailto:info@harbourcontractors.co.uk" colorScheme="teal" size="md">
+                <Button as="a" href="mailto:info@ijrhservices.co.uk" colorScheme="teal" size="md">
                     Contact Us
                 </Button>
             </Box>
