@@ -1,100 +1,81 @@
-import { Box, Center, IconButton, Image } from '@chakra-ui/react';
-import { useRef, useEffect, useState } from 'react';
+// src/Components/ProjectCarousel.jsx
+
+import { Box, Image, IconButton, useMediaQuery, Center, Flex } from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { useState, useEffect, useCallback } from 'react';
 
 const ProjectCarousel = ({ images }) => {
-  const carouselRef = useRef(null);
-  const [loaded, setLoaded] = useState(false);
-  const [carouselKey, setCarouselKey] = useState(0); // for forced rerender
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile] = useMediaQuery('(max-width: 768px)');
 
-  // CSS injection for scaling previews
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  }, [images.length]);
+
   useEffect(() => {
-    const style = document.createElement('style');
-    style.innerHTML = `
-      .carousel .slide {
-        padding: 0 6px;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: default;
-      }
+    const interval = setInterval(nextSlide, 6000);
+    return () => clearInterval(interval);
+  }, [nextSlide]);
 
-      .carousel .slide img {
-        transition: transform 0.3s ease, opacity 0.3s ease;
-        max-height: 60vh;
-        width: auto;
-        height: auto;
-      }
+  if (!images || images.length === 0) return null;
 
-      .carousel .slide.selected img {
-        transform: scale(1);
-        opacity: 1;
-      }
-
-      .carousel .slide:not(.selected) img {
-        transform: scale(0.65);
-        opacity: 0.6;
-      }
-    `;
-    document.head.appendChild(style);
-    return () => document.head.removeChild(style);
-  }, []);
-
-  // Trigger layout fix after mount
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setCarouselKey((prev) => prev + 1);
-      setLoaded(true);
-    }, 50); // delay can be adjusted
-    return () => clearTimeout(timeout);
-  }, [images]);
-
-  if (!loaded || !images.length) return null;
+  const prevIndex = (currentIndex - 1 + images.length) % images.length;
+  const nextIndex = (currentIndex + 1) % images.length;
 
   return (
     <Box my={6} maxW="90vw" mx="auto">
-      <Carousel
-        key={carouselKey}
-        ref={carouselRef}
-        showThumbs={false}
-        showIndicators={false}
-        showStatus={false}
-        infiniteLoop
-        emulateTouch
-        swipeable
-        autoPlay
-        interval={6000}
-        showArrows={false}
-        centerMode
-        centerSlidePercentage={70}
-        onClickItem={() => {}}
+      <Flex
+        justify="center"
+        align="center"
+        gap={isMobile ? 0 : 6}
+        position="relative"
+        overflow="hidden"
       >
-        {images.map((src, index) => (
-          <Box key={index}>
+        {!isMobile && (
+          <Box flexShrink={0} opacity={0.6} transform="scale(0.6)">
             <Image
-              src={src}
-              alt={`Slide ${index + 1}`}
-              objectFit="contain"
-              pointerEvents="none"
+              src={images[prevIndex]}
+              alt="Previous image"
+              maxH="50vh"
               borderRadius="md"
+              objectFit="contain"
             />
           </Box>
-        ))}
-      </Carousel>
+        )}
+
+        <Box flexShrink={0}>
+          <Image
+            src={images[currentIndex]}
+            alt="Current image"
+            maxH="60vh"
+            borderRadius="md"
+            objectFit="contain"
+          />
+        </Box>
+
+        {!isMobile && (
+          <Box flexShrink={0} opacity={0.6} transform="scale(0.6)">
+            <Image
+              src={images[nextIndex]}
+              alt="Next image"
+              maxH="50vh"
+              borderRadius="md"
+              objectFit="contain"
+            />
+          </Box>
+        )}
+      </Flex>
 
       {images.length > 1 && (
         <Center mt={4}>
-          <Box display="flex" gap={6}>
+          <Flex gap={4}>
             <IconButton
               icon={<ChevronLeftIcon boxSize={6} />}
-              onClick={() =>
-                carouselRef.current?.moveTo(
-                  (carouselRef.current.state.selectedItem - 1 + images.length) % images.length
-                )
-              }
+              onClick={prevSlide}
               bg="#204775"
               color="white"
               borderRadius="full"
@@ -104,11 +85,7 @@ const ProjectCarousel = ({ images }) => {
             />
             <IconButton
               icon={<ChevronRightIcon boxSize={6} />}
-              onClick={() =>
-                carouselRef.current?.moveTo(
-                  (carouselRef.current.state.selectedItem + 1) % images.length
-                )
-              }
+              onClick={nextSlide}
               bg="#204775"
               color="white"
               borderRadius="full"
@@ -116,7 +93,7 @@ const ProjectCarousel = ({ images }) => {
               _hover={{ bg: '#16395b' }}
               _active={{ bg: '#122f4b', transform: 'scale(0.95)' }}
             />
-          </Box>
+          </Flex>
         </Center>
       )}
     </Box>
