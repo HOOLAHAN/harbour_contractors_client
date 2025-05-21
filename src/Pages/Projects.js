@@ -1,4 +1,4 @@
-// src/Pages/Projects.jsx
+// src/Pages/Projects.js
 
 import { useContext } from 'react';
 import {
