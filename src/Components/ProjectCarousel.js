@@ -1,16 +1,63 @@
 import { Box, Center, IconButton, Image } from '@chakra-ui/react';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const ProjectCarousel = ({ images }) => {
   const carouselRef = useRef(null);
+  const [loaded, setLoaded] = useState(false);
+  const [carouselKey, setCarouselKey] = useState(0); // for forced rerender
+
+  // CSS injection for scaling previews
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .carousel .slide {
+        padding: 0 6px;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: default;
+      }
+
+      .carousel .slide img {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        max-height: 60vh;
+        width: auto;
+        height: auto;
+      }
+
+      .carousel .slide.selected img {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      .carousel .slide:not(.selected) img {
+        transform: scale(0.65);
+        opacity: 0.6;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => document.head.removeChild(style);
+  }, []);
+
+  // Trigger layout fix after mount
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setCarouselKey((prev) => prev + 1);
+      setLoaded(true);
+    }, 50); // delay can be adjusted
+    return () => clearTimeout(timeout);
+  }, [images]);
+
+  if (!loaded || !images.length) return null;
 
   return (
     <Box my={6} maxW="90vw" mx="auto">
-      {/* Image Carousel with Previews */}
       <Carousel
+        key={carouselKey}
         ref={carouselRef}
         showThumbs={false}
         showIndicators={false}
@@ -21,32 +68,26 @@ const ProjectCarousel = ({ images }) => {
         autoPlay
         interval={6000}
         showArrows={false}
-        renderArrowPrev={() => null}
-        renderArrowNext={() => null}
         centerMode
-        centerSlidePercentage={60} // Main image takes 60%, previews take 20% on either side
-        dynamicHeight={false}
+        centerSlidePercentage={70}
+        onClickItem={() => {}}
       >
         {images.map((src, index) => (
-          <Box key={index} display="flex" justifyContent="center">
+          <Box key={index}>
             <Image
               src={src}
               alt={`Slide ${index + 1}`}
               objectFit="contain"
-              maxH="60vh"
-              height="60vh"
-              width="auto"
+              pointerEvents="none"
               borderRadius="md"
-              mx="auto"
             />
           </Box>
         ))}
       </Carousel>
 
-      {/* Custom Arrow Controls Below */}
       {images.length > 1 && (
         <Center mt={4}>
-          <Box display="flex" gap={8}>
+          <Box display="flex" gap={6}>
             <IconButton
               icon={<ChevronLeftIcon boxSize={6} />}
               onClick={() =>
