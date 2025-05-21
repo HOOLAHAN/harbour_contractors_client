@@ -1,6 +1,11 @@
-// src/Components/ProjectCarousel.jsx
-
-import { Box, Image, IconButton, useMediaQuery, Center, Flex } from '@chakra-ui/react';
+import {
+  Box,
+  Image,
+  IconButton,
+  useMediaQuery,
+  Center,
+  Flex,
+} from '@chakra-ui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { useState, useEffect, useCallback } from 'react';
 
@@ -31,42 +36,65 @@ const ProjectCarousel = ({ images }) => {
       <Flex
         justify="center"
         align="center"
-        gap={isMobile ? 0 : 6}
         position="relative"
-        overflow="hidden"
+        gap={isMobile ? 0 : 4}
+        minH="60vh"
       >
+        {/* Previous Image */}
         {!isMobile && (
-          <Box flexShrink={0} opacity={0.6} transform="scale(0.6)">
+          <Flex
+            justify="center"
+            align="center"
+            height="60vh"
+            width="20%"
+            opacity={0.5}
+          >
             <Image
               src={images[prevIndex]}
-              alt="Previous image"
-              maxH="50vh"
-              borderRadius="md"
+              alt="Previous"
+              maxH="60vh"
+              maxW="100%"
               objectFit="contain"
+              borderRadius="md"
             />
-          </Box>
+          </Flex>
         )}
 
-        <Box flexShrink={0}>
+        {/* Main Image */}
+        <Flex
+          justify="center"
+          align="center"
+          height="60vh"
+          width={isMobile ? '100%' : '60%'}
+        >
           <Image
             src={images[currentIndex]}
-            alt="Current image"
+            alt="Main"
             maxH="60vh"
-            borderRadius="md"
+            maxW="100%"
             objectFit="contain"
+            borderRadius="md"
           />
-        </Box>
+        </Flex>
 
+        {/* Next Image */}
         {!isMobile && (
-          <Box flexShrink={0} opacity={0.6} transform="scale(0.6)">
+          <Flex
+            justify="center"
+            align="center"
+            height="60vh"
+            width="20%"
+            opacity={0.5}
+          >
             <Image
               src={images[nextIndex]}
-              alt="Next image"
-              maxH="50vh"
-              borderRadius="md"
+              alt="Next"
+              maxH="60vh"
+              maxW="100%"
               objectFit="contain"
+              borderRadius="md"
             />
-          </Box>
+          </Flex>
         )}
       </Flex>
 
